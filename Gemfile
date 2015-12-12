@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# # Use sqlite3 as the database for Active Record
+# gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -44,4 +44,54 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+gem 'mysql2', '~> 0.3.20'
+gem 'json'
+gem 'jquery-turbolinks'
+
+group :development, :test do
+  gem 'thin'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
+end
+
+gem 'rspec-rails', group: [:test, :development]
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'guard-rspec'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
+end
+
+group :production do
+  gem 'browser_details'
+end
+
+# for simple markup in views
+gem 'slim'
+# Kramdown for markdown/html parsing
+gem 'kramdown'
+# for CMS
+gem 'fae-rails'
+# Settingslogic to configure gloabl setting fron yml: https://github.com/binarylogic/settingslogic
+gem 'settingslogic', '~> 2.0.8'
+# for pagination
+gem 'kaminari'
+# styles and structure for bourbon
+gem 'bitters'
+# sass mixins
+gem 'bourbon'
+# grid framework for bourbon
+gem 'neat'
+# patterns for bourbon
+gem 'refills'
+# for better prefixing
+gem 'autoprefixer-rails'
+# for Google Maps
+gem 'gmaps4rails'
+# for Geocoding items
+gem 'geocoder'
 
