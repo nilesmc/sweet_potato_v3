@@ -14,4 +14,17 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
+/log/*.log
 /tmp
+
+.ruby-gemset
+.ruby-version
+.rvmrc
+.ruby-gemset
+.ruby-version
+.DS_Store
+
+.rubocop.yml
+
+public/system/
+public/uploads/
