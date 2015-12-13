@@ -1,7 +1,0 @@
-@import
-  "bourbon",
-  "base/grid-settings",
-  "neat",
-  "refills/navigation";
-
-@import "base/base";

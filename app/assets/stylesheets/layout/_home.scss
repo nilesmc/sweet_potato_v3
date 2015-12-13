@@ -1,0 +1,4 @@
+.part {
+  @include clearfix;
+  margin-bottom: $gutter * 3;
+}
