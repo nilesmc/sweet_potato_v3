@@ -1,0 +1,27 @@
+doctype html
+
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edgechrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"
+    title = page_title
+
+    == stylesheet_link_tag 'application', media: 'all'
+
+    == csrf_meta_tags
+
+  body class=body_class data-force-encoding="✓"
+
+    == render 'grid'
+
+    == render 'header'
+
+    == yield
+
+    == render 'footer'
+
+    == javascript_include_tag 'application'
+
+    == yield :javascript
