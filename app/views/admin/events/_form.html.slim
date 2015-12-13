@@ -8,7 +8,8 @@
   .main_content-sections
     section.main_content-section
       .main_content-section-area
-        = fae_input f, :title
+        = fae_input f, :title, input_html: { class: 'slugger' }
+        = fae_input f, :slug
         = fae_input f, :start_date
         = fae_input f, :end_date
         = fae_input f, :capacity
@@ -27,4 +28,4 @@
         = fae_input f, :code_of_conduct
         = fae_input f, :comments
 
-        = fae_association f, :organizer
+        / = fae_association f, :organizer
