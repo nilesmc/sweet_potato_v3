@@ -95,3 +95,6 @@ gem 'gmaps4rails'
 # for Geocoding items
 gem 'geocoder'
 
+# Heroku
+gem 'rails_12factor', group: :production
+
