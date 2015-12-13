@@ -1,0 +1,6 @@
+Fae.setup do |config|
+
+  config.devise_secret_key = 'b73fd30c8437ec23e449b6a9360d77d700fdddb5eed48ed6f2d568ee77eeb790dc6e0a8621fc65343dd3f370dc141205a46e138be22dc95eed0749116f2ecf46'
+
+
+end
