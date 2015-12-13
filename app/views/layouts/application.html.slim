@@ -14,13 +14,11 @@ html lang="en"
 
   body class=body_class data-force-encoding="✓"
 
-    == render 'grid'
-
-    == render 'header'
+    / == render 'header'
 
     == yield
 
-    == render 'footer'
+    / == render 'footer'
 
     == javascript_include_tag 'application'
 
