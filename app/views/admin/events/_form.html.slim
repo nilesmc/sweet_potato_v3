@@ -10,23 +10,22 @@
       .main_content-section-area
         = fae_input f, :title, input_html: { class: 'slugger' }
         = fae_input f, :slug
-        = fae_input f, :start_date
-        = fae_input f, :end_date
-        = fae_image_form f, :hero_image, label: 'Hero Image', helper_text: 'TBD x TBD px, JPG.', alt_label: 'Hero Image Alt Text'
-        = fae_input f, :capacity
+        = fae_daterange f, [:start_date, :end_date], label: 'Start/End dates'
+        = fae_image_form f, :hero_image, label: 'Hero Image', helper_text: 'TBD x TBD px, JPG.', alt_label: 'Hero Image Alt Text', required: true
+        = fae_input f, :capacity, collection: 1..500, helper_text: "Select the number of participants from 1 to 500."
         = fae_input f, :venue_name
-        = fae_input f, :address_1
+        = fae_input f, :address_1, helper_text: "Must be address that works with Google Maps."
         = fae_input f, :address_2
         = fae_input f, :city
-        = fae_input f, :state
+        = fae_input f, :state, collection: us_states, label_method: :first
         = fae_input f, :zip
-        = fae_input f, :restrictions
         = fae_input f, :tradition
-        = fae_input f, :introduction
-        = fae_input f, :description
-        = fae_input f, :preparation
-        = fae_input f, :instructions
-        = fae_input f, :code_of_conduct
-        = fae_input f, :comments
+        = fae_input f, :introduction, markdown: true, helper_text: "A brief introduction to the event > 150 characters"
+        = fae_input f, :description, markdown: true, helper_text: "A description of the event."
+        = fae_input f, :preparation, markdown: true, helper_text: "A description of the preperation needed for the event."
+        = fae_input f, :instructions, markdown: true, helper_text: "Instructions needed for the event."
+        = fae_input f, :restrictions, markdown: true, helper_text: "Please describe any groups or practices you would like to exclude from this event."
+        = fae_input f, :code_of_conduct, markdown: true, helper_text: "Please describe your code of coduct for the event."
+        = fae_input f, :comments, markdown: true
 
         / = fae_association f, :organizer

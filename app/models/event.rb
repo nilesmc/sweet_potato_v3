@@ -7,7 +7,15 @@ class Event < ActiveRecord::Base
     dependent: :destroy
   accepts_nested_attributes_for :hero_image, allow_destroy: true
 
-  validates :title, presence: true
+  validates :title, :venue_name, :address_1, :city, :state, :tradition, :capacity, presence: true
+
+  validates :introduction, length: { maximum: 150 }, presence: true
+
+  validates :description, length: { maximum: 200 }, presence: true
+
+  validates :preperation, :instructions, :restrictions, :code_of_conduct, :comments, length: { maximum: 175 }
+
+  validates :zip, format: { with: /^\d{5}$/, multiline: true, message: "Please format correctly e.g. 01234" }, presence: true
 
   validates :slug,
     uniqueness: true,
