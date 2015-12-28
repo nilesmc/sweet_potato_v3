@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   end
 
   def detail
-    @item = Event.find_by(params[:slug])
+    @item = Event.find_by_slug(params[:slug])
     return show_404 if @item.blank?
   end
 

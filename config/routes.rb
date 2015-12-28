@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get '/terms-and-conditions', to: 'pages#terms', as: 'terms'
   get '/privacy', to: 'pages#privacy', as: 'privacy'
 
+  # Events
+  get '/events', to: 'events#index', as: 'event_index'
+  get '/events/:slug', to: 'events#detail', as: 'event_detail'
+
   namespace :admin do
     resources :events
   end
