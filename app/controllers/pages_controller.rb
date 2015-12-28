@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   def home
     @events = Event.all
 
-    @hash = Gmaps4rails.build_markers(@events) do |event, marker|
+    @hash_events = Gmaps4rails.build_markers(@events) do |event, marker|
       marker.lat event.latitude
       marker.lng event.longitude
     end

@@ -37,5 +37,59 @@ section.part
       .card-copy
         p Organize a retreat
         = link_to "Organize", '#', class: 'button'
-section.part style='width: 800px;'
-  #map style='width: 800px; height: 400px;'
+section.part
+  #map_canvas
+
+== content_for :javascript
+  javascript:
+    if (typeof google === 'object' && typeof google.maps === 'object') {
+
+      var markers = [];
+      var overlay = "";
+
+      var handler = Gmaps.build('Google',
+        { markers:
+          { maxRandomDistance: null }
+      });
+
+      handler.buildMap({
+          provider: {
+            minZoom: 4,
+            maxZoom: 16,
+            draggable: true,
+            zoomControl: true,
+            scrollwheel: false,
+            disableDoubleClickZoom: true,
+            disableDefaultUI: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            styles: Maps.styles,
+            zoomControlOptions: {
+              style: google.maps.ZoomControlStyle.SMALL
+            }
+          },
+          internal: {
+            id: 'map_canvas'
+          }
+        },
+        function(){
+          markers = handler.addMarkers(#{raw @hash_events.to_json}, { optimized: false });
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          createOverlay();
+          propertyToggle();
+          mapResize();
+
+          google.maps.event.addListener(handler.map.getServiceObject(), 'click', _closeInfoWindow);
+          google.maps.event.addListener(handler.map.getServiceObject(), 'drag', _closeInfoWindow);
+        }
+      );
+
+      function _closeInfoWindow(){
+        if(handler.currentInfowindow()) {
+          handler.currentInfowindow().close();
+        }
+      };
+
+    } else {
+      $(".hero-city_info-map-text").text('Map Temporarily Unavailable');
+    }
