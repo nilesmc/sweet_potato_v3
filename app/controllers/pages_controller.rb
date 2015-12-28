@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
+
   def home
+  end
+
+  def about
   end
 
   def help
@@ -8,6 +12,10 @@ class PagesController < ApplicationController
   def contact
   end
 
-  def about
+  def terms
   end
+
+  def privacy
+  end
+
 end
