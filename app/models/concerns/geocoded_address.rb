@@ -3,11 +3,11 @@ module GeocodedAddress
 
   included do
     geocoded_by :full_street_address
-    after_validation :geocode, if: ->(i){ i.city && (i.latitude.blank? || i.address_changed? || i.city_changed?) }
+    after_validation :geocode, if: ->(i){ i.city && (i.latitude.blank? || i.address_1_changed? || i.city_changed?) }
   end
 
   def full_street_address
-    "#{address}, #{city} #{state}"
+    "#{address_1}, #{city} #{state}"
   end
 
 end

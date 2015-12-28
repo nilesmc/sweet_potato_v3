@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   include Fae::BaseModelConcern
+  include GeocodedAddress
 
   has_one :hero_image, -> { where(attached_as: 'hero_image') },
     as: :imageable,
@@ -13,7 +14,7 @@ class Event < ActiveRecord::Base
 
   validates :description, length: { maximum: 200 }, presence: true
 
-  validates :preperation, :instructions, :restrictions, :code_of_conduct, :comments, length: { maximum: 175 }
+  validates :preparation, :instructions, :restrictions, :code_of_conduct, :comments, length: { maximum: 175 }
 
   validates :zip, format: { with: /^\d{5}$/, multiline: true, message: "Please format correctly e.g. 01234" }, presence: true
 
