@@ -12,6 +12,12 @@ development:
   username: sweet_potato
   password: Y~wU*b6@7y92a
 
+test:
+  <<: *default
+  database: sweet_potato_test
+  username: sweet_potato
+  password: Y~wU*b6@7y92a
+
 production:
   <<: *default
   database: ENV['DATABASE_URL']

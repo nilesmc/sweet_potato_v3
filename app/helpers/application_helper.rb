@@ -5,6 +5,16 @@ module ApplicationHelper
     asset_object.present? && asset_object.asset.present? && asset_object.asset.url.present?
   end
 
+  # Returns the full title on a per-page basis.
+  def full_title
+    base_title = 'Sweet Potato'
+    if @page_title.blank?
+      base_title
+    else
+      "#{base_title} | #{@page_title}"
+    end
+  end
+
   # displays fields that use either markdown or html
   def kramdown(string)
     return if string.blank?
@@ -19,13 +29,7 @@ module ApplicationHelper
     return doc.to_s
   end
 
-  def page_title
-    if @page_title.present?
-      @page_title
-    else
-      'Sweet Potato'
-    end
-  end
+
 
   def body_class
     "#{controller_name} #{action_name}"
