@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228203857) do
+ActiveRecord::Schema.define(version: 20151229012950) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title",           limit: 255
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 20151228203857) do
     t.string   "slug",            limit: 255
     t.decimal  "latitude",                      precision: 12, scale: 8
     t.decimal  "longitude",                     precision: 12, scale: 8
+    t.decimal  "price",                         precision: 8,  scale: 2
+    t.time     "start_time"
+    t.time     "end_time"
   end
 
   create_table "fae_changes", force: :cascade do |t|

@@ -1,5 +1,10 @@
 module ApplicationHelper
 
+  # checks to see that carrier wave image object is present and there is a file
+  def asset_and_url_present?(asset_object)
+    asset_object.present? && asset_object.asset.present? && asset_object.asset.url.present?
+  end
+
   # displays fields that use either markdown or html
   def kramdown(string)
     return if string.blank?

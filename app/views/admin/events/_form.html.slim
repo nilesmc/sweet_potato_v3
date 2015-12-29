@@ -11,8 +11,11 @@
         = fae_input f, :title, input_html: { class: 'slugger' }
         = fae_input f, :slug
         = fae_daterange f, [:start_date, :end_date], label: 'Start/End dates'
+        = fae_input f, :start_time
+        = fae_input f, :end_time, helper_text: 'End Time if there is one.'
         = fae_image_form f, :hero_image, label: 'Hero Image', helper_text: 'TBD x TBD px, JPG.', alt_label: 'Hero Image Alt Text', required: true
         = fae_input f, :capacity, collection: 1..500, helper_text: "Select the number of participants from 1 to 500."
+        = fae_input f, :price, helper_text: "Cost per person of the event, no $ needed."
         = fae_input f, :venue_name
         = fae_input f, :address_1, helper_text: "Must be address that works with Google Maps."
         = fae_input f, :address_2

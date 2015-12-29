@@ -3,7 +3,8 @@ section.part
 
 section.part
   .side-image
-    .images-wrapper
+    - if asset_and_url_present?(@item.hero_image)
+      .images-wrapper style="background-image:url(#{@item.hero_image.asset.url})"
     .side-image-content
       h4 = @item.tradition
       h1 = @item.title
@@ -16,9 +17,9 @@ section.part
           h5 = "#{@item.start_date}"
       - if @item.start_time.present?
         - if @item.start_time != @item.end_time
-          h5 = "#{@item.start_time} - #{@item.end_time}"
+          h5 = "#{@item.start_time.to_s(:good_times)} - #{@item.end_time.to_s(:good_times)}"
         - else
-          h5 = "#{@item.start_time}"
+          h5 = "#{@item.start_time.to_s(:good_times)}"
       h5 = "Maximum Capacity #{@item.capacity}/#{@item.capacity}"
       = kramdown(@item.introduction)
 
