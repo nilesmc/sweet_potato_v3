@@ -10,11 +10,11 @@ class Event < ActiveRecord::Base
 
   validates :title, :venue_name, :address_1, :city, :state, :tradition, :capacity, presence: true
 
-  validates :introduction, length: { maximum: 150 }, presence: true
+  validates :introduction, length: { maximum: 250 }, presence: true
 
-  validates :description, length: { maximum: 200 }, presence: true
+  validates :description, length: { maximum: 300 }, presence: true
 
-  validates :preparation, :instructions, :restrictions, :code_of_conduct, :comments, length: { maximum: 175 }
+  validates :preparation, :instructions, :restrictions, :code_of_conduct, :comments, length: { maximum: 500 }
 
   validates :zip, format: { with: /^\d{5}$/, multiline: true, message: "Please format correctly e.g. 01234" }, presence: true
 
