@@ -1,0 +1,114 @@
+section.part
+  #map_canvas
+
+section.part
+  .side-image
+    .images-wrapper
+    .side-image-content
+      h4 = @item.tradition
+      h1 = @item.title
+      - if @item.price.present?
+        h5 = "$#{@item.price}"
+      - if @item.start_date.present?
+        - if @item.start_date != @item.end_date
+          h5 = "#{@item.start_date} - #{@item.end_date}"
+        - else
+          h5 = "#{@item.start_date}"
+      - if @item.start_time.present?
+        - if @item.start_time != @item.end_time
+          h5 = "#{@item.start_time} - #{@item.end_time}"
+        - else
+          h5 = "#{@item.start_time}"
+      h5 = "Maximum Capacity #{@item.capacity}/#{@item.capacity}"
+      = kramdown(@item.introduction)
+
+section.part
+  .scroll-on-page
+    aside#scroll-on-page-top
+      - if @item.description.present?
+        a.scroll-on-page-link href="#description"  Description
+      - if @item.preparation.present?
+        a.scroll-on-page-link href="#preperation"  Preperation
+      - if @item.instructions.present?
+        a.scroll-on-page-link href="#instructions"  Instructions
+      - if @item.restrictions.present?
+        a.scroll-on-page-link href="#restrictions"  Restrictions
+      - if @item.restrictions.present?
+        a.scroll-on-page-link href="#restrictions"  Code Of Conduct
+    article
+      - if @item.description.present?
+        section
+          h3#description Description
+          = kramdown(@item.description)
+      - if @item.preparation.present?
+        section
+          h3#perperation Preperation
+          = kramdown(@item.preparation)
+      - if @item.instructions.present?
+        section
+          h3#instructions Instructions
+          = kramdown(@item.instructions)
+      - if @item.restrictions.present?
+        section
+          h3#restrictions Restrictions
+          = kramdown(@item.restrictions)
+      - if @item.restrictions.present?
+        section
+          h3#restrictions Code Of Conduct
+          = kramdown(@item.code_of_conduct)
+
+        a.scroll-on-page-link href="#scroll-on-page-top"  Back to top
+
+== content_for :javascript
+  javascript:
+    if (typeof google === 'object' && typeof google.maps === 'object') {
+
+      var markers = [];
+      var overlay = "";
+
+      var handler = Gmaps.build('Google',
+        { markers:
+          { maxRandomDistance: null }
+      });
+
+      handler.buildMap({
+          provider: {
+            minZoom: 4,
+            maxZoom: 16,
+            draggable: true,
+            zoomControl: true,
+            scrollwheel: false,
+            disableDoubleClickZoom: true,
+            disableDefaultUI: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            styles: Maps.styles,
+            zoomControlOptions: {
+              style: google.maps.ZoomControlStyle.SMALL
+            }
+          },
+          internal: {
+            id: 'map_canvas'
+          }
+        },
+        function(){
+          markers = handler.addMarkers(#{raw @hash_events.to_json}, { optimized: false });
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          createOverlay();
+          propertyToggle();
+          mapResize();
+
+          google.maps.event.addListener(handler.map.getServiceObject(), 'click', _closeInfoWindow);
+          google.maps.event.addListener(handler.map.getServiceObject(), 'drag', _closeInfoWindow);
+        }
+      );
+
+      function _closeInfoWindow(){
+        if(handler.currentInfowindow()) {
+          handler.currentInfowindow().close();
+        }
+      };
+
+    } else {
+      $("#map_canvas").text('Map Temporarily Unavailable');
+    }
