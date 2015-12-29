@@ -29,7 +29,7 @@ test:
 #   password: <%= Rails.application.secrets.db_pass %>
 
 production:
-  <<: *default
+  <<: *base
   database: ENV['CLEARDB_DATABASE_URL']
   username: ENV['CLEARDB_DATABASE_USERNAME']
   password: ENV['CLEARDB_DATABASE_PASSWORDs']
