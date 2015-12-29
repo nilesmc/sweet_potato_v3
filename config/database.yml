@@ -16,20 +16,20 @@ test:
   username: root
   password:
 
-remote_development:
-  <<: *base
-  database: sweet_potato_dev
-  username: <%= Rails.application.secrets.db_user %>
-  password: <%= Rails.application.secrets.db_pass %>
+# remote_development:
+#   <<: *base
+#   database: sweet_potato_dev
+#   username: <%= Rails.application.secrets.db_user %>
+#   password: <%= Rails.application.secrets.db_pass %>
 
-stage:
-  <<: *base
-  database: sweet_potato
-  username: <%= Rails.application.secrets.db_user %>
-  password: <%= Rails.application.secrets.db_pass %>
+# stage:
+#   <<: *base
+#   database: sweet_potato
+#   username: <%= Rails.application.secrets.db_user %>
+#   password: <%= Rails.application.secrets.db_pass %>
 
 production:
-  <<: *base
-  database: sweet_potato
-  username: <%= Rails.application.secrets.db_user %>
-  password: <%= Rails.application.secrets.db_pass %>
+  <<: *default
+  database: ENV['CLEARDB_DATABASE_URL']
+  username: ENV['CLEARDB_DATABASE_USERNAME']
+  password: ENV['CLEARDB_DATABASE_PASSWORDs']
