@@ -54,6 +54,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'quiet_assets'
+  # patterns for bourbon
   gem 'refills'
 end
 
@@ -87,8 +88,6 @@ gem 'bitters'
 gem 'bourbon'
 # grid framework for bourbon
 gem 'neat'
-# patterns for bourbon
-gem 'refills'
 # for better prefixing
 gem 'autoprefixer-rails'
 # for Google Maps
