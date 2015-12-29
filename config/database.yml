@@ -12,24 +12,6 @@ development:
   username: sweet_potato
   password: Y~wU*b6@7y92a
 
-test:
-  <<: *default
-  database: pae_test
-  username: root
-  password:
-
-# remote_development:
-#   <<: *default
-#   database: sweet_potato_dev
-#   username: <%= Rails.application.secrets.db_user %>
-#   password: <%= Rails.application.secrets.db_pass %>
-
-# stage:
-#   <<: *default
-#   database: sweet_potato
-#   username: <%= Rails.application.secrets.db_user %>
-#   password: <%= Rails.application.secrets.db_pass %>
-
 production:
   <<: *default
   database: ENV['DATABASE_URL']
