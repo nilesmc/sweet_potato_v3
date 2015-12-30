@@ -21,6 +21,7 @@ module Fae
     def nav_items
       [
         { text: 'Events', path: main_app.admin_events_path },
+        { text: 'Pages', path: fae.pages_path }
         # scaffold inject marker
       ]
     end

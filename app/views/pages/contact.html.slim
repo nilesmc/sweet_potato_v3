@@ -1,1 +1,17 @@
-h2 Contact
+- if @page.title.present?
+  h2 = @page.title
+
+- if page_item_present?(@page, :headline)
+  h3 = @page.headline.content
+
+- if page_item_present?(@page, :email)
+  h4 = @page.email.content
+
+- if page_item_present?(@page, :phone)
+  h4 = @page.phone.content
+
+- if page_item_present?(@page, :intro)
+  = kramdown(@page.intro.content)
+
+- if page_item_present?(@page, :body)
+  = kramdown(@page.body.content)

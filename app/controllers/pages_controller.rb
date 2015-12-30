@@ -12,18 +12,23 @@ class PagesController < ApplicationController
   end
 
   def about
+    @page = AboutPage.instance
   end
 
   def help
+    @page = HelpPage.instance
   end
 
   def contact
+    @page = ContactPage.instance
   end
 
   def terms
+    @page = TermsPage.instance
   end
 
   def privacy
+    @page = PrivacyPage.instance
   end
 
   def error404

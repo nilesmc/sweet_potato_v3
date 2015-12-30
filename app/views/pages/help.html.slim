@@ -1,1 +1,11 @@
-h2 Help
+- if @page.title.present?
+  h2 = @page.title
+
+- if page_item_present?(@page, :headline)
+  h3 = @page.headline.content
+
+- if page_item_present?(@page, :intro)
+  = kramdown(@page.intro.content)
+
+- if page_item_present?(@page, :body)
+  = kramdown(@page.body.content)

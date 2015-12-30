@@ -5,9 +5,9 @@ footer.footer role="contentinfo"
     ul
       li
         h3 Content
-      li= link_to "About",  '#'
-      li= link_to "Contact", '#'
-      li= link_to "Help", '#'
+      li= link_to "About",  about_path
+      li= link_to "Contact", contact_path
+      li= link_to "Help", help_path
     ul
       li
         h3 Follow Us
@@ -21,9 +21,9 @@ footer.footer role="contentinfo"
       li
         h3 Legal
       li
-        a href="javascript:void(0)"  Terms and Conditions
+        a href=terms_path  Terms and Conditions
       li
-        a href="javascript:void(0)"  Privacy Policy
+        a href=privacy_path  Privacy Policy
   hr/
   p
     | Sweet Potato is made by

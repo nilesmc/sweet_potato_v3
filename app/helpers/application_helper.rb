@@ -29,6 +29,10 @@ module ApplicationHelper
     return doc.to_s
   end
 
+  def page_item_present?(page, symbol)
+    page.try(symbol).present? && @page.send(symbol).content.present?
+  end
+
   def body_class
     "#{controller_name} #{action_name}"
   end
