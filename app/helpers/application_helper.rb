@@ -29,8 +29,6 @@ module ApplicationHelper
     return doc.to_s
   end
 
-
-
   def body_class
     "#{controller_name} #{action_name}"
   end
