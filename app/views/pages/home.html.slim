@@ -40,56 +40,57 @@ section.part
 section.part
   #map_canvas
 
-== content_for :javascript
-  javascript:
-    if (typeof google === 'object' && typeof google.maps === 'object') {
+- if @hash_events.present?
+  == content_for :javascript
+    javascript:
+      if (typeof google === 'object' && typeof google.maps === 'object') {
 
-      var markers = [];
-      var overlay = "";
+        var markers = [];
+        var overlay = "";
 
-      var handler = Gmaps.build('Google',
-        { markers:
-          { maxRandomDistance: null }
-      });
+        var handler = Gmaps.build('Google',
+          { markers:
+            { maxRandomDistance: null }
+        });
 
-      handler.buildMap({
-          provider: {
-            minZoom: 4,
-            maxZoom: 16,
-            draggable: true,
-            zoomControl: true,
-            scrollwheel: false,
-            disableDoubleClickZoom: true,
-            disableDefaultUI: true,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            styles: Maps.styles,
-            zoomControlOptions: {
-              style: google.maps.ZoomControlStyle.SMALL
+        handler.buildMap({
+            provider: {
+              minZoom: 4,
+              maxZoom: 16,
+              draggable: true,
+              zoomControl: true,
+              scrollwheel: false,
+              disableDoubleClickZoom: true,
+              disableDefaultUI: true,
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              styles: Maps.styles,
+              zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL
+              }
+            },
+            internal: {
+              id: 'map_canvas'
             }
           },
-          internal: {
-            id: 'map_canvas'
+          function(){
+            markers = handler.addMarkers(#{raw @hash_events.to_json}, { optimized: false });
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+            createOverlay();
+            propertyToggle();
+            mapResize();
+
+            google.maps.event.addListener(handler.map.getServiceObject(), 'click', _closeInfoWindow);
+            google.maps.event.addListener(handler.map.getServiceObject(), 'drag', _closeInfoWindow);
           }
-        },
-        function(){
-          markers = handler.addMarkers(#{raw @hash_events.to_json}, { optimized: false });
-          handler.bounds.extendWith(markers);
-          handler.fitMapToBounds();
-          createOverlay();
-          propertyToggle();
-          mapResize();
+        );
 
-          google.maps.event.addListener(handler.map.getServiceObject(), 'click', _closeInfoWindow);
-          google.maps.event.addListener(handler.map.getServiceObject(), 'drag', _closeInfoWindow);
-        }
-      );
+        function _closeInfoWindow(){
+          if(handler.currentInfowindow()) {
+            handler.currentInfowindow().close();
+          }
+        };
 
-      function _closeInfoWindow(){
-        if(handler.currentInfowindow()) {
-          handler.currentInfowindow().close();
-        }
-      };
-
-    } else {
-      $("#map_canvas").text('Map Temporarily Unavailable');
-    }
+      } else {
+        $("#map_canvas").text('Map Temporarily Unavailable');
+      }

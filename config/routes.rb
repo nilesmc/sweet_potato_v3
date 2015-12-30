@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/privacy', to: 'pages#privacy', as: 'privacy'
 
   # Events
-  get '/events', to: 'events#index', as: 'event_index'
+  get '/events', to: 'events#index', as: 'events_index'
   get '/events/:slug', to: 'events#detail', as: 'event_detail'
 
   namespace :admin do
@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   # mount Fae below your admin namespec
   mount Fae::Engine => '/admin'
-
 
   match "*path" => 'pages#error404', via: [:get, :post]
 
