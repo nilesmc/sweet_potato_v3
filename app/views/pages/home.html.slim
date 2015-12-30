@@ -14,26 +14,26 @@ section.part
       .card-image
         img alt="" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" /
       .card-header
-        | Connect
+        | Sign Up
       .card-copy
         p Connect with the community
-        = link_to "Sign up", '#', class: 'button'
+        = link_to "Sign up", sign_up_path, class: 'button'
     .card
       .card-image
         img alt="" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-4.png" /
       .card-header
         | Engage
       .card-copy
-        p Engage in retreats
+        p Engage in a class
         = link_to "Find a Retreat", events_index_path, class: 'button'
     .card
       .card-image
         img alt="" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-3.png" /
       .card-header
-        | Organize
+        | Share
       .card-copy
-        p Organize a retreat
-        = link_to "Organize", '#', class: 'button'
+        p Share a class or retreat
+        = link_to "Organize", event_new_path, class: 'button'
 section.part
   #map_canvas
 

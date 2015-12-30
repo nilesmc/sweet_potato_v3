@@ -5,6 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-Fae::Role.create(name: 'sp_user', position: 3)
-Fae::Role.create(name: 'sp_organizer', position: 4)

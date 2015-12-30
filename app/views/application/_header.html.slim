@@ -5,17 +5,18 @@ header.navigation role="banner"
     a#js-mobile-menu.navigation-menu-button href="javascript:void(0)"  MENU
     nav role="navigation"
       ul#js-navigation-menu.navigation-menu.show
-        li.nav-link= link_to 'Engage', '#', class: 'navbar-link'
+        li.nav-link= link_to 'Engage', user_signup_path, class: 'navbar-link'
         li.nav-link= link_to "Organize", '#', class: 'navbar_link'
-        li.nav-link.more
-          a.dropdown-toggle data-toggle="dropdown" href="#"  Account
-          ul.submenu
-            li
-              a href="#"  View Your Retreats
-            li
-              a href="#"  Edit profile
-            li
-              a href="#"  Logout
+        - if user_signed_in?
+          li.nav-link.more
+            a.dropdown-toggle data-toggle="dropdown" href="#"  Account
+            ul.submenu
+              li
+                a href="#"  View Your Retreats
+              li
+                a href="#"  Edit profile
+              li
+                a href="#"  Logout
     .navigation-tools
       .search-bar
         form role="search"
@@ -23,6 +24,6 @@ header.navigation role="banner"
           button type="submit"
             img alt=("Search Icon") src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" /
       - if user_signed_in?
-        = link_to "Reflect", '/', class: 'sign-up'
+        = link_to "Connect", events_index_path, class: 'sign-up'
       - else
-        = link_to "Connect", '#', class: 'sign-up'
+        = link_to "Sign Up", 'user_signup_path', class: 'sign-up'
