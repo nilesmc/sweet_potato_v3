@@ -8,7 +8,13 @@ class Event < ActiveRecord::Base
     dependent: :destroy
   accepts_nested_attributes_for :hero_image, allow_destroy: true
 
-  validates :title, :venue_name, :address_1, :city, :state, :tradition, :capacity, presence: true
+  validates :venue_name, :address_1, :city, :state, :tradition, :capacity, presence: true
+
+  VALID_ADDRESS_REGEX = /^[\w\s-]*$/u
+
+  validates :address_1, presence: true, format: { with: VALID_ADDRESS_REGEX, multiline: true }
+
+  validates :title, length: { maximum: 100 }, presence: true
 
   validates :introduction, length: { maximum: 250 }, presence: true
 

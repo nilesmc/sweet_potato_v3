@@ -14,7 +14,6 @@ FactoryGirl.define do
     description 'Test description text'
     # on_stage true
     # on_prod true
-
   end
 
 end
