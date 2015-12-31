@@ -6,8 +6,8 @@ class AboutPage < Fae::StaticPage
   def self.fae_fields
     {
       headline: { type: Fae::TextField },
-      intro: { type: Fae::TextField },
-      body: { type: Fae::TextField }
+      intro: { type: Fae::TextArea },
+      body: { type: Fae::TextArea }
     }
   end
 

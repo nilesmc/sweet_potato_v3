@@ -7,8 +7,8 @@ class HomePage < Fae::StaticPage
     {
       hero_image: { type: Fae::Image },
       headline: { type: Fae::TextField },
-      intro: { type: Fae::TextField },
-      body: { type: Fae::TextField }
+      intro: { type: Fae::TextArea },
+      body: { type: Fae::TextArea }
     }
   end
 
