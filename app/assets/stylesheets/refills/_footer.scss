@@ -4,7 +4,7 @@
   $base-accent-color: #477DCA !default;
   $medium-screen: em(640) !default;
   $large-screen: em(860) !default;
-  
+
   ul {
     padding: 0;
   }
@@ -19,7 +19,7 @@
   }
   //////////////////////////////////////////////////////////////////////////////////
 
-  $footer-background: desaturate(darken($base-accent-color, 20%), 30%);
+  $footer-background: desaturate(darken($blue, 0%), 0%);
   $footer-color: white;
   $footer-link-color: transparentize($footer-color, 0.6);
   $footer-disclaimer-color: transparentize($footer-color, 0.6);
@@ -35,7 +35,7 @@
     img {
       height: 3em;
     }
-  } 
+  }
 
   .footer-links {
     @include clearfix;
@@ -78,7 +78,7 @@
     font-size: 1em;
     font-weight: 800;
     margin-bottom: 0.4em;
-  }  
+  }
 
   hr {
     border: 1px solid transparentize($footer-disclaimer-color, 0.3);
@@ -93,5 +93,15 @@
     margin: auto;
     max-width: 35em;
     text-align: center;
+    a {
+      color: $orange;
+      @include stroke(2, $beige);
+
+      &:focus,
+      &:hover {
+        color: transparentize($orange, 0);
+        @include stroke(1, $beige);
+      }
+    }
   }
 }

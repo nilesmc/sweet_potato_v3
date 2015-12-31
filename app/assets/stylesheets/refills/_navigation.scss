@@ -6,17 +6,17 @@ header.navigation {
   $base-border-color: gainsboro !default;
   $base-border-radius: 3px !default;
   $base-accent-color: $c-sp-indigo !default;
-  $dark-gray: #333 !default;
+
   $large-screen: em(860) !default;
-  
+
   a {
     text-decoration: none;
   }
   //////////////////////////////////////////////////////////////////////////////////
 
   $navigation-padding: 1em;
-  $navigation-background: $dark-gray;
-  $navigation-color: transparentize(white, 0.3);
+  $navigation-background: $blue;
+  $navigation-color: transparentize($beige, 0.3);
   $navigation-color-hover: white;
   $navigation-height: 60px;
   $navigation-nav-button-background: $base-accent-color;

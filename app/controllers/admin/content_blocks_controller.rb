@@ -4,7 +4,7 @@ module Admin
     private
 
     def fae_pages
-      [ContactPage, AboutPage, HelpPage, TermsPage, PrivacyPage]
+      [ContactPage, AboutPage, HelpPage, TermsPage, PrivacyPage, HomePage]
     end
   end
 end

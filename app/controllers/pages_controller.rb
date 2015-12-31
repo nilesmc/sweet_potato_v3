@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
   def home
+    @page = HomePage.instance
     @events = Event.all
 
     if @events.present?

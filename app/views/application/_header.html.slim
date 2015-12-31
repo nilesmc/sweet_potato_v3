@@ -1,12 +1,12 @@
 header.navigation role="banner"
   .navigation-wrapper
-    a.logo href="javascript:void(0)"
-      img alt=("Logo Image") src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" /
+    a.logo href=root_path
+      img alt=("Logo Image") src="/placeholder_logo.png" /
     a#js-mobile-menu.navigation-menu-button href="javascript:void(0)"  MENU
     nav role="navigation"
       ul#js-navigation-menu.navigation-menu.show
-        li.nav-link= link_to 'Engage', user_signup_path, class: 'navbar-link'
-        li.nav-link= link_to "Organize", '#', class: 'navbar_link'
+        li.nav-link= link_to 'Engage', events_index_path, class: 'navbar-link'
+        li.nav-link= link_to "Share", event_new_path, class: 'navbar_link'
         - if user_signed_in?
           li.nav-link.more
             a.dropdown-toggle data-toggle="dropdown" href="#"  Account
@@ -17,13 +17,13 @@ header.navigation role="banner"
                 a href="#"  Edit profile
               li
                 a href="#"  Logout
-    .navigation-tools
-      .search-bar
-        form role="search"
-          input placeholder=("Enter Search") type="search" /
-          button type="submit"
-            img alt=("Search Icon") src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" /
-      - if user_signed_in?
-        = link_to "Connect", events_index_path, class: 'sign-up'
-      - else
-        = link_to "Sign Up", 'user_signup_path', class: 'sign-up'
+    / .navigation-tools
+      / .search-bar
+      /   form role="search"
+      /     input placeholder=("Enter Search") type="search" /
+      /     button type="submit"
+      /       img alt=("Search Icon") src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" /
+      / - if user_signed_in?
+      /   = link_to "Connect", '#', class: 'sign-up'
+      / - else
+      /   = link_to "Sign Up", 'user_signup_path', class: 'sign-up'

@@ -1,31 +1,43 @@
 section.part
-  .hero
+  .hero style="background-image:url(#{@page.hero_image.asset.url if asset_and_url_present?(@page.hero_image)})"
     .hero-inner
       a.hero-logo href=""
-        img alt=("Logo Image") src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" /
+        img alt=("Logo Image") src="/placeholder_logo.png" /
+      h1 Sweet Potato
       .hero-copy
-        h1 Sweet Potato
         h2 Connecting People with Enlightenment
-        p For practioners with busy lives
-      button Learn More
+        p For practioners with full lives
+      a href=about_path
+        button Learn About Us
 section.part
   .cards
-    .card
-      .card-image
-        img alt="" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" /
-      .card-header
-        | Sign Up
-      .card-copy
-        p Connect with the community
-        = link_to "Sign up", sign_up_path, class: 'button'
+
+    - if user_signed_in?
+      .card
+        .card-image
+          img alt="" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" /
+        .card-header
+          | View Profile
+        .card-copy
+          p Stay Connect with the community
+          = link_to "View Profile", '#', class: 'button'
+    - else
+      .card
+        .card-image
+          img alt="" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" /
+        .card-header
+          | Sign Up
+        .card-copy
+          p Connect with the community
+          = link_to "Sign up", user_signup_path, class: 'button'
     .card
       .card-image
         img alt="" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-4.png" /
       .card-header
         | Engage
       .card-copy
-        p Engage in a class
-        = link_to "Find a Retreat", events_index_path, class: 'button'
+        p Engage in a Class or Retreat that fits you
+        = link_to "Find an Event", events_index_path, class: 'button'
     .card
       .card-image
         img alt="" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains-3.png" /
@@ -33,7 +45,7 @@ section.part
         | Share
       .card-copy
         p Share a class or retreat
-        = link_to "Organize", event_new_path, class: 'button'
+        = link_to "Share", event_new_path, class: 'button'
 section.part
   #map_canvas
 
@@ -53,7 +65,7 @@ section.part
         handler.buildMap({
             provider: {
               minZoom: 4,
-              maxZoom: 16,
+              maxZoom: 14,
               draggable: true,
               zoomControl: true,
               scrollwheel: false,

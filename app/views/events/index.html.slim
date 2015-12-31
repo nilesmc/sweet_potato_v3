@@ -1,4 +1,156 @@
-h2 Events Index
+section.part
+  #map_canvas
 
-- @events.each do |event|
-  h3 = event.title
+section.part
+  .search-tools
+    .filter
+      label Tradition
+      div
+        ol
+          li
+            input#red type="checkbox" /
+            label for="red"  Red
+          li
+            input#green type="checkbox" /
+            label for="green"  Green
+          li
+            input#blue type="checkbox" /
+            label for="blue"  Blue
+    .filter
+      label Date
+      div
+        ol
+          li
+            input#small type="checkbox" /
+            label for="small"  Small
+          li
+            input#medium type="checkbox" /
+            label for="medium"  Medium
+          li
+            input#large type="checkbox" /
+            label for="large"  Large
+    .filter
+      label Time
+      div
+        ol
+          li
+            input#small type="checkbox" /
+            label for="small"  Small
+          li
+            input#medium type="checkbox" /
+            label for="medium"  Medium
+          li
+            input#large type="checkbox" /
+            label for="large"  Large
+    .filter
+      label Location
+      div
+        ol
+          li
+            input#short type="checkbox" /
+            label for="short"  Short
+          li
+            input#long type="checkbox" /
+            label for="long"  Long
+    .trigger
+      button Search
+
+section.part
+  table.tables
+    thead
+      tr
+        th Event
+        th Tradition
+        th Date
+        th Time
+        th Location
+        th Capacity
+        th Attend
+    tbody
+      - @events.each do |event|
+        tr
+          td
+            a href=event_detail_path(event.slug) = event.title
+          td
+            p = event.tradition
+          td
+            - if event.start_date.present?
+              - if event.start_date != event.end_date
+                p = "#{event.start_date} - #{event.end_date}"
+              - else
+                p = "#{event.start_date}"
+          td
+            - if event.start_time.present?
+              - if event.start_time != event.end_time
+                h5 = "#{event.start_time.to_s(:good_times)} - #{event.end_time.to_s(:good_times)}"
+              - else
+                h5 = "#{event.start_time.to_s(:good_times)}"
+          td
+            p = "#{event.venue_name}, #{event.city}, #{event.state}"
+          td
+            p = event.capacity
+          td
+            button Attend
+            button Leave
+
+section.part
+  .hero style="background-image:url(#{@page.hero_image.asset.url if asset_and_url_present?(@page.hero_image)})"
+    .hero-inner
+      a.hero-logo href=""
+        img alt=("Logo Image") src="/placeholder_logo.png" /
+      h1 Sweet Potato
+      .hero-copy
+        h2 Connecting People with Enlightenment
+
+- if @hash_events.present?
+  == content_for :javascript
+    javascript:
+      if (typeof google === 'object' && typeof google.maps === 'object') {
+
+        var markers = [];
+        var overlay = "";
+
+        var handler = Gmaps.build('Google',
+          { markers:
+            { maxRandomDistance: null }
+        });
+
+        handler.buildMap({
+            provider: {
+              minZoom: 4,
+              maxZoom: 14,
+              draggable: true,
+              zoomControl: true,
+              scrollwheel: false,
+              disableDoubleClickZoom: true,
+              disableDefaultUI: true,
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              styles: Maps.styles,
+              zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL
+              }
+            },
+            internal: {
+              id: 'map_canvas'
+            }
+          },
+          function(){
+            markers = handler.addMarkers(#{raw @hash_events.to_json}, { optimized: false });
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+            mapResize();
+
+            google.maps.event.addListener(handler.map.getServiceObject(), 'click', _closeInfoWindow);
+            google.maps.event.addListener(handler.map.getServiceObject(), 'drag', _closeInfoWindow);
+          }
+        );
+
+        function _closeInfoWindow(){
+          if(handler.currentInfowindow()) {
+            handler.currentInfowindow().close();
+          }
+        };
+
+      } else {
+        $("#map_canvas").text('Map Temporarily Unavailable');
+      }
