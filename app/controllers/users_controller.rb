@@ -7,7 +7,14 @@ class UsersController < ApplicationController
 
   def detail
     @user = Fae::User.find(params[:id])
-    return show_404 if current_user != @user
+
+    if current_user == @user
+      render 'users/detail'
+    elsif [1, 2].include?(current_user.role.id)
+      render 'users/detail'
+    else
+      return show_404
+    end
   end
 
   def edit
@@ -33,7 +40,7 @@ class UsersController < ApplicationController
     params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
 
     if @user.update(user_params)
-      path = current_user.super_admin? ? users_path : fae.root_path
+      path = current_user.super_admin? ? fae.users_path : users_detail_path(@user.id)
       redirect_to path, notice: t('fae.save_notice')
     else
       render action: 'edit', error: t('fae.save_error')

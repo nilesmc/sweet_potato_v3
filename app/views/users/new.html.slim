@@ -1,10 +1,1 @@
-.refill
-  .refills-wrapper
-    section.part
-      = simple_form_for(@user, html: { multipart: true, novalidate: true }, url: user_signup_path) do |f|
-        = f.input :first_name
-        = f.input :last_name
-        = f.input :email
-        = f.input :password, helper_text: 'Passwords must contain at least 8 characters.'
-        = f.input :password_confirmation
-        = f.button :submit, "Submit"
+== render 'form'

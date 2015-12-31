@@ -12,11 +12,14 @@ Rails.application.routes.draw do
   get '/events', to: 'events#index', as: 'events_index'
   get '/events/:slug', to: 'events#detail', as: 'event_detail'
   get '/events/new', to: 'events#new', as: 'event_new'
+  post '/events/attend', to: 'events#attend', as: 'event_attend'
 
   # Users
   get '/signup', to: 'users#new', as: 'user_signup'
   post '/signup', to: 'users#create'
   get '/profile/:id', to: 'users#detail', as: 'users_detail'
+
+  resources :users
 
   namespace :admin do
     resources :events
