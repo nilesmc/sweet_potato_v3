@@ -23,7 +23,7 @@ section.part
       h5 = "Maximum Capacity #{@item.capacity}/#{@item.capacity}"
       = kramdown(@item.introduction)
       - if current_user.present?
-        button.js-attend-btn data_id=@item.id data_user_id='#{current_user.id}' data_attend='#{@item.has_users_and_user(current_user) ? 'true' : 'false'}' ="#{@item.has_users_and_user(current_user) ? 'Cancel' : 'Attend'}"
+        button.js-attend-btn class="#{'attending' if @item.has_users_and_user(current_user) }" data_id=@item.id data_user_id='#{current_user.id}' data_attend='#{@item.has_users_and_user(current_user) ? 'true' : 'false'}' ="#{@item.has_users_and_user(current_user) ? 'Cancel' : 'Attend'}"
       - else
         button.js-attend-btn data_id=@item.id data_user_id='' data_attend='false' Attend
 
