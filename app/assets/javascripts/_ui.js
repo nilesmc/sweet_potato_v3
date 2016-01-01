@@ -20,7 +20,6 @@ FC._ui = {
   },
 
   _post_attend_request: function(params){
-    console.log(params);
     $.ajax({
       url: '/events/attend',
       type: 'post',
