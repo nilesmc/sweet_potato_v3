@@ -22,6 +22,10 @@ section.part
           h5 = "#{@item.start_time.to_s(:good_times)}"
       h5 = "Maximum Capacity #{@item.capacity}/#{@item.capacity}"
       = kramdown(@item.introduction)
+      - if current_user.present?
+        button.js-attend-btn data_id=@item.id data_user_id='#{current_user.id}' data_attend='#{@item.has_users_and_user(current_user) ? 'true' : 'false'}' ="#{@item.has_users_and_user(current_user) ? 'Cancel' : 'Attend'}"
+      - else
+        button.js-attend-btn data_id=@item.id data_user_id='' data_attend='false' Attend
 
 section.part
   .scroll-on-page
@@ -95,9 +99,6 @@ section.part
           markers = handler.addMarkers(#{raw @hash_events.to_json}, { optimized: false });
           handler.bounds.extendWith(markers);
           handler.fitMapToBounds();
-          createOverlay();
-          propertyToggle();
-          mapResize();
 
           google.maps.event.addListener(handler.map.getServiceObject(), 'click', _closeInfoWindow);
           google.maps.event.addListener(handler.map.getServiceObject(), 'drag', _closeInfoWindow);

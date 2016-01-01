@@ -71,8 +71,10 @@
     }
 
     button {
-      @include button(flat, $base-accent-color);
       padding: 0.7em 1em;
+      &.attending {
+        background-color: $orange !important;
+      }
     }
   }
 

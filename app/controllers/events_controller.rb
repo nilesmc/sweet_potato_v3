@@ -21,7 +21,13 @@ class EventsController < ApplicationController
   end
 
   def attend
-    @user = User.find(params[:user_id])
+    @user_event = UserEvent.where(user_id: params[:user_id].to_i, event_id: params[:event_id].to_i).first
+    if @user_event.present?
+      @user_event.destroy
+    else
+      UserEvent.create(user_id: params[:user_id].to_i, event_id: params[:event_id].to_i)
+    end
+    render nothing: true
   end
 
 end

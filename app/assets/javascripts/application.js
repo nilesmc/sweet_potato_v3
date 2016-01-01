@@ -12,8 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
 //= require underscore
 //= require gmaps/google
 //= require refills/search_tools
+//= require refills/search_tools
+//= require frob_core_helpers
+//= require frob_core
+//= require _ui
+//= require maps
+//= require_self
+
+;(function() { FCH.ready.push(FC.init); FCH.init(); })();

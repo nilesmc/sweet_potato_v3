@@ -2,6 +2,10 @@ class Event < ActiveRecord::Base
   include Fae::BaseModelConcern
   include GeocodedAddress
 
+  has_many :user_events
+  has_many :users, class_name: 'Fae::User',
+    through: :user_events
+
   has_one :hero_image, -> { where(attached_as: 'hero_image') },
     as: :imageable,
     class_name: '::Fae::Image',
@@ -34,6 +38,10 @@ class Event < ActiveRecord::Base
 
   def fae_display_field
     title
+  end
+
+  def has_users_and_user(user)
+    users.present? && users.include?(user)
   end
 
 end
