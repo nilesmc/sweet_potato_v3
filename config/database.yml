@@ -9,8 +9,8 @@ default: &default
 development:
   <<: *default
   database: sweet_potato
-  username: sweet_potato
-  password: Y~wU*b6@7y92a
+  username: root
+  password: 9Gateway9
 
 test:
   <<: *default
