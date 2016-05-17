@@ -6,6 +6,7 @@ var FC = {
 
   init: function() {
     FC._ui.init();
+    FC._filter.init();
   },
 
 };

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   # Events
   get '/events', to: 'events#index', as: 'events_index'
+  post '/filter/events', to: 'events#event_filter', as: 'events_filter'
   get '/events/:slug', to: 'events#detail', as: 'event_detail'
   get '/events/new', to: 'events#new', as: 'event_new'
   post '/events/attend', to: 'events#attend', as: 'event_attend'

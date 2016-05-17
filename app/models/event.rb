@@ -44,4 +44,18 @@ class Event < ActiveRecord::Base
     users.present? && users.include?(user)
   end
 
+  class << self
+
+    def event_filter(params)
+
+      conditions = {}
+
+      conditions[:venue_name] = params[:venue_name] if params[:venue_name].present?
+
+      order(:venue_name).where(conditions)
+
+    end
+
+  end
+
 end

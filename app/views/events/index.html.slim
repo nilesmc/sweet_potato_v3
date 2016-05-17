@@ -2,7 +2,17 @@ section.part
   #map_canvas
 
 section.part
-  .search-tools
+  .search-tools.js-event_filter
+    .filter.js-event_filter-venue_name
+      label Venue Name
+      div
+        ol
+          - if @events.present?
+            - @events.each do |event|
+              li
+                input type="checkbox" id="event_#{event.id}" data-filter=event.id
+                label for="event_#{event.id}" =event.venue_name
+
     .filter
       label Tradition
       div

@@ -17,7 +17,9 @@
 //= require refills/search_tools
 //= require refills/search_tools
 //= require frob_core_helpers
+//= require fryr
 //= require frob_core
+//= require filter
 //= require _ui
 //= require maps
 //= require_self

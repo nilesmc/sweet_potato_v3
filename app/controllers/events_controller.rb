@@ -10,6 +10,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def event_filter
+    # require 'pry'
+    # binding.pry
+    if params.length > 2
+      @events.event_filter(params)
+    else
+      @events.all
+    end
+  end
+
   def detail
     @item = Event.find_by_slug(params[:slug])
     return show_404 if @item.blank?
